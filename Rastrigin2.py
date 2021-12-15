@@ -6,11 +6,12 @@ import matplotlib.pyplot as plt
     
 x1 = np.arange(-5.12, 5.12, 0.01)
 
-#making n same dimension as x1
+#Making n same dimension as x1
 kol = int(5.12 * 2 / 0.01)
 #n = np.arange(0, kol, 1)
 z1 = np.zeros(kol)
 
+#Rastrigin function
 n=1
 z1 = 10 * n + (x1 ** 2 - 10 * np.cos(2 * np.pi * x1))
 
@@ -25,19 +26,16 @@ plt.plot(x1, y, linewidth=1)
 
 plt.legend()
 
-#Next we create an array of random X-points, that might be a minimum
+#Creating an array of random X-points, that might be a minimum
 #SETTING THE FIRST POPULATION
 n1 = 20 #number of individuals
-#random array of X
-K = np.random.rand(n1,1)
+K = np.random.rand(n1,1) #random array of X
 for i in range(0,n1):
     K[i] = K[i] * np.random.uniform(-5.12, 5.12)
 print('\nThe first population\n' ,K)
 
-#The best one
-W=np.zeros(1)
-#limit loop
-limit = 10
+W=np.zeros(1) #The best one
+limit = 10 #limit loop
 
 for f in range(0,limit):
     
@@ -68,8 +66,8 @@ for f in range(0,limit):
     plt.plot(K[ind], Min, 'ro', label = 'Min')
     print('\nFound minimum is X = ', K[ind], ' Y = ', Min, ' for cycle ', f, '\n')
     
-    #setting Mom and Dad as 2 random elements of the population
-    #plus settin their indexes as num and nud
+    #Setting Mom and Dad as 2 random elements of the population
+    #Plus setting their indexes as num and nud
     #MOM
     num = np.random.randint(0, n1-1)
     MOM = K[num]
@@ -83,12 +81,12 @@ for f in range(0,limit):
     plt.plot(DAD, Yd, 'ro', label = 'Dad',  color = '#5867a3')
     
 
-    #crossing over mom and dad    
+    #Crossing over mom and dad    
     KID = np.random.uniform(0, 1) * MOM + np.random.uniform(0, 1) * DAD
     Yk = 10 * n + (KID ** 2 - 10 * np.cos(2 * np.pi * KID))
     print('the kid is X = ', KID, ' Y = ', Yk)
     
-    #Replacing the worst element of the population with the kid
+    #Replacing the worst element of the population with the Kid
     Max = Yg[0]
     nuk = 0
     for i in range (0, n1):
