@@ -24,7 +24,7 @@ int main() {
     double *y = new double[b];
 	int d = 100;	//a divider for creating the float array
 
-    //deleting the mom, dad and kid files if exist. If don't exist it will be created
+    //Deleting the mom, dad and kid files if exist. If don't exist they will be created
     std::ofstream mom;
     std::ofstream dad;
     std::ofstream kid;
@@ -38,7 +38,7 @@ int main() {
 	std::ofstream orig;
     orig.open("RastrDan.txt");
 
-	//setting the x array for plotting the initial function
+	//Setting the x array for plotting the initial function
 	for (int i = 0; i < b; i++) {
 		x[i] = (-5.12) + 0.01 * i;
 		y[i] = Rastr(x[i]);
@@ -47,7 +47,7 @@ int main() {
 	
 	orig.close();
 
-	//Next we create an array of random X - points, that might be a minimum
+	//Creating an array of random X - points, that might be a minimum
 	//SETTING THE FIRST POPULATION
 	int n1 = 41; //number of individuals
 	//random array of X
@@ -83,11 +83,6 @@ int main() {
     int mind, maxd;
  
     for (int f = 0; f < limit; f++) {
-
-        //std::string filename = "Pop" + std::to_string(f); //Naming the output file
-
-        //std::ofstream pop;
-        //pop.open(filename);
         
         mind = 0;
         maxd = 0;
@@ -96,7 +91,6 @@ int main() {
         for (int i = 0; i < n1; i++) {
             y1[i] = Rastr(x1[i]); //The Y for this population's X
             std::cout << x1[i] << " " << y1[i] << std::endl;
-            //pop << x1[i] << " " << y1[i] << std::endl; //Writing population in the file
 
             //Founding minimum
             if (y1[i] < y1[mind]) {
@@ -108,7 +102,6 @@ int main() {
                 maxd = i;
             }
         }
-        //pop.close();
 
         std::cout << "\nThe minimum in Population " << f << " is X = " << x1[mind] 
             << " Y = " << y1[mind] << std::endl;
@@ -128,13 +121,10 @@ int main() {
         }
 
         //Setting Mom and Dad as 2 random elements of the population
-        
-        //stupid error - MathCad can't read numbers with . instead of ,
 
         //MOM
         mom.open("Mom.txt", std::ios::app);
         int num = rand() % (n1 - 1);
-        //std::cout << "num is " << num;
         double *MOM = new double;
         MOM = &x1[num];
         double *Ym = new double;
@@ -147,7 +137,6 @@ int main() {
         //DAD
         dad.open("Dad.txt", std::ios::app);
         int nud = rand() % (n1 - 1);
-        //std::cout << "nud is " << nud;
         double* DAD = new double;
         DAD = &x1[nud];
         double* Yd = new double;
@@ -172,8 +161,6 @@ int main() {
         //Replacing the worst element of the population with the kid
         x1[maxd] = KID;
         y1[maxd] = Rastr(x1[maxd]);
-        //double y1k = Rastr(x1[maxd]);
-        //std::cout << "kid y1 " << y1[maxd] << " rastr y " << y1k << std::endl;
 
     };
 
